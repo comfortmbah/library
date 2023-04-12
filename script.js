@@ -8,13 +8,34 @@ function Book(title, author, pages, read) {
 }
 
 function render() {
-    const libraryBook = document.querySelector('#library');
-    libraryBook.textContent = '';
+    const bookGrid = document.querySelector('.library-grid');
+    bookGrid.textContent = '';
     for (let i = 0; i < myLibrary.length; i++) {
         let book = myLibrary[i];
-        let bookElement = document.createElement('p');
-        bookElement.textContent = `${book.title}`;
-        libraryBook.appendChild(bookElement);
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('book-card');
+
+        const bookTitle = document.createElement('p');
+        bookTitle.classList.add('book-title');
+        bookTitle.textContent = `${book.title}`;
+        bookCard.appendChild(bookTitle);
+
+        const bookAuthor = document.createElement('p');
+        bookAuthor.classList.add('book-author');
+        bookAuthor.textContent = `by ${book.author}`;
+        bookCard.appendChild(bookAuthor);
+
+        const bookPages = document.createElement('p');
+        bookPages.classList.add('book-pages');
+        bookPages.textContent = `${book.pages} pages`;
+        bookCard.appendChild(bookPages);
+
+        const bookRead = document.createElement('p');
+        bookRead.classList.add('book-read');
+        bookRead.textContent = `${book.read ? 'Read' : 'Not read yet'}`;
+        bookCard.appendChild(bookRead);
+
+        bookGrid.appendChild(bookCard);
     }
 }
 
