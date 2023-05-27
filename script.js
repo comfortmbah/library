@@ -1,11 +1,15 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
+
+
 
 function render() {
     const bookGrid = document.querySelector('.library-grid');
@@ -35,8 +39,20 @@ function render() {
         bookRead.textContent = `${book.read ? 'Read' : 'Not read yet'}`;
         bookCard.appendChild(bookRead);
 
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('remove-btn');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick=`removeBook(${i})`;
+        bookCard.appendChild(removeButton);
+        
+
         bookGrid.appendChild(bookCard);
     }
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    render();
 }
 
 function addBookToLibrary() {
