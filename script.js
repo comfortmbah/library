@@ -9,9 +9,7 @@ class Book {
     }
 }
 
-
-
-function render() {
+const render = () => {
     const bookGrid = document.querySelector('.library-grid');
     bookGrid.textContent = '';
     for (let i = 0; i < myLibrary.length; i++) {
@@ -42,28 +40,30 @@ function render() {
         const removeButton = document.createElement('button');
         removeButton.classList.add('remove-btn');
         removeButton.textContent = 'Remove';
-        removeButton.onclick=`removeBook(${i})`;
+        removeButton.onclick = `removeBook(${i})`;
         bookCard.appendChild(removeButton);
         
 
         bookGrid.appendChild(bookCard);
-    }
+    }   
+    
 }
 
-function removeBook(index) {
+
+const removeBook = (index) => {
     myLibrary.splice(index, 1);
     render();
 }
 
-function addBookToLibrary() {
-  let title = document.querySelector('#title').value;
-  let author = document.querySelector('#author').value;
-  let pages = document.querySelector('#pages').value;
-  let read = document.querySelector('#read').checked;
+const addBookToLibrary = () => {
+    let title = document.querySelector('#title').value;
+    let author = document.querySelector('#author').value;
+    let pages = document.querySelector('#pages').value;
+    let read = document.querySelector('#read').checked;
 
-  let newBook = new Book(title, author, pages, read);
-  myLibrary.push(newBook);
-  render();
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    render();
 }
 
 const bookBtn = document.querySelector('#new-book-btn');
@@ -73,7 +73,8 @@ bookBtn.addEventListener('click', function() {
     bookForm.style.display = 'block';
 })
 
-document.querySelector('#book-form').addEventListener('submit', function() {
+let bookForm = document.querySelector('#book-form');
+bookForm.addEventListener('submit', function() {
     event.preventDefault();
-    addBookToLibrary();
+    addBookToLibrary();   
 })
